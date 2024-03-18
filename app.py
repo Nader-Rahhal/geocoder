@@ -13,15 +13,12 @@ geocoder = OpenCageGeocode(key)
 
 try:
     with open(addressfile, 'r') as file:
-        reader = csv.DictReader(file)
+        reader = csv.reader(file)
         for line in reader:
-            print(line)
-            #address = line.strip()
-            #geocoder.geocode(address)
-            #print(results[0]["geometry"])
+            address = line[0].strip()
+            result = geocoder.geocode(address)
+            print(result[0]["geometry"])
             
 except FileNotFoundError:
     print(f'{addressfile} does not exist.')
 
-# results = geocoder.geocode("3131 12th Avenue, Coralville, IA 52241, United States of America")
-# pprint(results[0]["geometry"])
